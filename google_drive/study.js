@@ -40,7 +40,51 @@
     experimentRoot.id = "jspsych-target";
 
     let participantId;
-    const jsPsychInstance = initJsPsych({
+    const startedAt = new Date().toISOString();
+    let jsPsychInstance;
+
+    const shiftLikertResponses = (data) => {
+      data.response = Object.fromEntries(
+        Object.entries(data.response).map(([key, value]) => [
+          key,
+          Number.isInteger(value) ? value + 1 : value
+        ])
+      );
+    };
+
+    const escapeCsv = (value) => {
+      const text = value === undefined || value === null ? "" : String(value);
+      return `"${text.replaceAll('"', '""')}"`;
+    };
+
+    const createWideCsv = () => {
+      const rows = jsPsychInstance.data.get().values();
+      const findSection = (section) => rows.find((row) => row.section === section) ?? {};
+      const demographics = findSection("demographics");
+      const panas = findSection("panas_18_argentina");
+      const swls = findSection("swls");
+      const debrief = findSection("debrief");
+      const record = {
+        participant_id: participantId,
+        trial_type: "survey_complete",
+        consent_given: true,
+        started_at: startedAt,
+        completed_at: new Date().toISOString(),
+        ...(demographics.response ?? {}),
+        ...(panas.response ?? {}),
+        ...(swls.response ?? {}),
+        rt_demographics_ms: demographics.rt,
+        rt_panas_ms: panas.rt,
+        rt_swls_ms: swls.rt,
+        rt_debrief_ms: debrief.rt,
+        total_time_ms: jsPsychInstance.getTotalTime()
+      };
+      const headers = Object.keys(record);
+      return `${headers.map(escapeCsv).join(",")}
+${headers.map((header) => escapeCsv(record[header])).join(",")}`;
+    };
+
+    jsPsychInstance = initJsPsych({
       display_element: "jspsych-target",
       show_progress_bar: true,
       auto_update_progress_bar: true,
@@ -49,6 +93,7 @@
         params: {
           experiment_id: "aOSPTvteBe0A",
           filename: () => `${participantId}.csv`,
+          data_string: createWideCsv,
           wait_message: "<p>Guardando tus respuestas. No cierres esta página.</p>",
           done_message: "<p>Las respuestas se guardaron correctamente. Ya podés cerrar esta página.</p>",
           on_save: (result) => {
@@ -86,7 +131,8 @@
       preamble: `<div class="survey-intro"><p class="kicker">2 de 3 · Cómo te sentís</p><h1>En este momento</h1><p>Indicá en qué medida te sentís así ahora mismo.</p></div>`,
       questions: panasItems.map((prompt, index) => ({ prompt, name: `panas_${String(index + 1).padStart(2, "0")}`, labels: panasLabels, required: false })),
       button_label: "Continuar",
-      data: { section: "panas_18_argentina" }
+      data: { section: "panas_18_argentina" },
+      on_finish: shiftLikertResponses
     });
 
     timeline.push({
@@ -94,7 +140,8 @@
       preamble: `<div class="survey-intro"><p class="kicker">3 de 3 · Tu vida en general</p><h1>Satisfacción con la vida</h1><p>Indicá cuánto estás de acuerdo o en desacuerdo con cada afirmación.</p></div>`,
       questions: swlsItems.map((prompt, index) => ({ prompt, name: `swls_${String(index + 1).padStart(2, "0")}`, labels: swlsLabels, required: false })),
       button_label: "Continuar",
-      data: { section: "swls" }
+      data: { section: "swls" },
+      on_finish: shiftLikertResponses
     });
 
     timeline.push({

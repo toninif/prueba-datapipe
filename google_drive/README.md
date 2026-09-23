@@ -2,7 +2,9 @@
 
 Prototipo de encuesta jsPsych en español conectado a DataPipe con destino a
 Google Drive. El experimento usa el ID `aOSPTvteBe0A` y guarda una sesión por
-participante en formato CSV.
+participante en formato CSV. El archivo final contiene una sola fila por
+participante, con una columna por respuesta. PANAS se almacena de 1 a 5 y SWLS
+de 1 a 7.
 
 La encuesta pregunta datos demográficos generales, afecto (PANAS, adaptación
 argentina de 18 ítems) y satisfacción con la vida (SWLS, cinco ítems). No pide
