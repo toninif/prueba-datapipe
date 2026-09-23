@@ -18,9 +18,25 @@
       return;
     }
 
-    consentScreen.hidden = true;
-    experimentRoot.hidden = false;
-    experimentRoot.removeAttribute("id");
+    const panasItems = [
+      "Interesado/a por las cosas", "Afligido/a", "Disgustado/a", "Fuerte", "Culpable", "Asustado/a",
+      "Hostil", "Entusiasmado/a", "Orgulloso/a", "Irritable", "Avergonzado/a", "Inspirado/a",
+      "Nervioso/a", "Decidido/a", "Atento/a", "Inquieto/a", "Activo/a", "Atemorizado/a"
+    ];
+    const panasLabels = ["Muy poco o nada", "Un poco", "Moderadamente", "Bastante", "Muchísimo"];
+    const swlsItems = [
+      "En la mayoría de los aspectos, mi vida se acerca a mi ideal.",
+      "Las condiciones de mi vida son excelentes.",
+      "Estoy satisfecho/a con mi vida.",
+      "Hasta ahora, he conseguido las cosas importantes que quiero en la vida.",
+      "Si pudiera vivir mi vida otra vez, no cambiaría casi nada."
+    ];
+    const swlsLabels = [
+      "Totalmente en desacuerdo", "Bastante en desacuerdo", "En desacuerdo",
+      "Ni de acuerdo ni en desacuerdo", "De acuerdo", "Bastante de acuerdo", "Totalmente de acuerdo"
+    ];
+
+    experimentRoot.removeAttribute("hidden");
     experimentRoot.id = "jspsych-target";
 
     const jsPsychInstance = initJsPsych({
@@ -73,6 +89,14 @@
       data: { section: "debrief" }
     });
 
-    jsPsychInstance.run(timeline);
+    try {
+      jsPsychInstance.run(timeline);
+      consentScreen.hidden = true;
+    } catch (error) {
+      experimentRoot.hidden = true;
+      consentScreen.hidden = false;
+      consentMessage.textContent = "No se pudo iniciar la encuesta. Recargá la página y volvé a intentar.";
+      console.error("No se pudo iniciar la encuesta", error);
+    }
   }
 })();
