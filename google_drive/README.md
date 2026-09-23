@@ -1,9 +1,8 @@
 # Encuesta breve — destino previsto: Google Drive
 
-Prototipo de encuesta jsPsych en español. La versión actual corre localmente y
-no envía datos a DataPipe. Cuando configuremos DataPipe, crear una experiencia
-separada para esta carpeta con destino a Google Drive y agregar aquí la
-identificación y las instrucciones de publicación correspondientes.
+Prototipo de encuesta jsPsych en español conectado a DataPipe con destino a
+Google Drive. El experimento usa el ID `aOSPTvteBe0A` y guarda una sesión por
+participante en formato CSV.
 
 La encuesta pregunta datos demográficos generales, afecto (PANAS, adaptación
 argentina de 18 ítems) y satisfacción con la vida (SWLS, cinco ítems). No pide
@@ -12,6 +11,11 @@ revisarse con los datos del equipo responsable y el protocolo final antes de
 invitar participantes; este prototipo no sustituye una revisión ética.
 
 Abrir `index.html` en un navegador con conexión a internet para probarla.
+
+Antes de probar un envío, activar **Accept new data** en el panel de DataPipe.
+La extensión transmite cada ensayo a medida que ocurre y envía el conjunto
+completo al finalizar. Dejar desactivadas las cargas base64 y la asignación de
+condiciones: esta encuesta no usa archivos binarios ni condiciones.
 
 
 Referencias de las escalas: PANAS en adaptación argentina (Moriondo et al., 2011; Medrano et al., 2015; versión breve de 18 ítems que excluye alerta y excitación) y SWLS (Diener et al., 1985; uso no comercial con atribución). Confirmar la redacción/versiones con el protocolo de investigación.

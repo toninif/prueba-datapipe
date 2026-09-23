@@ -39,13 +39,28 @@
     experimentRoot.removeAttribute("hidden");
     experimentRoot.id = "jspsych-target";
 
+    let participantId;
     const jsPsychInstance = initJsPsych({
       display_element: "jspsych-target",
       show_progress_bar: true,
       auto_update_progress_bar: true,
+      extensions: [{
+        type: jsPsychExtensionPipe,
+        params: {
+          experiment_id: "aOSPTvteBe0A",
+          filename: () => `${participantId}.csv`,
+          wait_message: "<p>Guardando tus respuestas. No cierres esta página.</p>",
+          done_message: "<p>Las respuestas se guardaron correctamente. Ya podés cerrar esta página.</p>",
+          on_save: (result) => {
+            if (!result.ok) {
+              document.body.innerHTML = "<main class='consent-wrap'><h1>No pudimos guardar las respuestas</h1><p>Dejá esta página abierta y contactá al responsable del estudio.</p></main>";
+            }
+          }
+        }
+      }]
     });
 
-    const participantId = jsPsychInstance.randomization.randomID(12);
+    participantId = jsPsychInstance.randomization.randomID(12);
     // A random, non-identifying ID is attached to each response row.
     jsPsychInstance.data.addProperties({ participant_id: participantId, consent_given: true });
 
@@ -84,7 +99,7 @@
 
     timeline.push({
       type: jsPsychHtmlButtonResponse,
-      stimulus: `<div class="survey-intro"><p class="kicker">Cierre</p><h1>Gracias por responder</h1><p>La encuesta termina acá. En esta versión de prueba, tus respuestas no se enviaron ni quedaron guardadas en un repositorio.</p><p class="trial-note">Este cuestionario es una demostración técnica y no ofrece una evaluación individual.</p></div>`,
+      stimulus: `<div class="survey-intro"><p class="kicker">Cierre</p><h1>Gracias por responder</h1><p>La encuesta termina acá. Al finalizar, DataPipe guardará tus respuestas en la carpeta de Google Drive del estudio.</p><p class="trial-note">Este cuestionario es una demostración técnica y no ofrece una evaluación individual.</p></div>`,
       choices: ["Finalizar"],
       data: { section: "debrief" }
     });

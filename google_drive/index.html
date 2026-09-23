@@ -11,6 +11,7 @@
   <script src="https://unpkg.com/@jspsych/plugin-html-button-response@2.1.0"></script>
   <script src="https://unpkg.com/@jspsych/plugin-survey-html-form@2.1.0"></script>
   <script src="https://unpkg.com/@jspsych/plugin-survey-likert@2.2.0"></script>
+  <script src="https://unpkg.com/@jspsych/extension-pipe@0.2.0"></script>
   <script defer src="study.js"></script>
 </head>
 <body>
@@ -21,9 +22,9 @@
     <p class="intro">Una encuesta sobre cómo te sentís y cómo evaluás tu vida en general.</p>
     <section class="consent-copy" aria-labelledby="consent-title">
       <h2 id="consent-title">Antes de empezar</h2>
-      <p>Esta encuesta de demostración incluye preguntas demográficas generales y dos cuestionarios breves. No pedimos tu nombre ni tu correo electrónico. Podés dejar de participar en cualquier momento cerrando esta página.</p>
-      <p>En esta versión de prueba, las respuestas permanecen en esta sesión del navegador y no se envían a ningún repositorio. Antes de una aplicación real, se actualizará esta información para explicar el destino y manejo de los datos.</p>
-      <p>La encuesta está dirigida a personas de 18 años o más. Participar es voluntario. Algunas preguntas se refieren a emociones y satisfacción con la vida; podés omitirlas o cerrar la página.</p>
+      <p>Esta encuesta de demostración incluye preguntas demográficas generales y dos cuestionarios breves. Podés dejar de participar en cualquier momento cerrando esta página.</p>
+      <p>Las respuestas se transmiten mediante una conexión cifrada a DataPipe y se guardan en una carpeta privada de Google Drive controlada por el responsable del estudio. No pedimos tu nombre ni tu correo electrónico.</p>
+      <p>La encuesta está dirigida a personas de 18 años o más. Participar es voluntario. Algunas preguntas se refieren a emociones y satisfacción con la vida; podés omitirlas o cerrar la página. Las respuestas ya completadas pueden conservarse como una sesión parcial si cerrás la página antes de terminar.</p>
       <p class="placeholder-note"><strong>Prototipo:</strong> antes de invitar participantes, completar responsable, contacto, finalidad, riesgos, conservación y procedimiento para retirar datos, y revisar el consentimiento según el protocolo aprobado.</p>
     </section>
     <div class="consent-actions">
@@ -31,7 +32,7 @@
       <button id="decline-consent" class="text-button" type="button">No acepto</button>
     </div>
     <p id="consent-message" class="consent-message" role="status" aria-live="polite"></p>
-    <footer>Prueba técnica con jsPsych · respuestas no enviadas</footer>
+    <footer>Prueba técnica con jsPsych · almacenamiento en Google Drive mediante DataPipe</footer>
   </main>
   <main id="jspsych-root" hidden></main>
 </body>
