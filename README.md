@@ -1,24 +1,14 @@
-# DataPipe repository test
+# test
 
-Two copies of a short Spanish jsPsych survey, prepared to compare DataPipe's
-Google Drive and Zenodo destinations.
+Dos copias de una breve encuentras hecha con jspsych. Quiero probar como funciona datapipe con los cambios que hizo para hablar con drive y zenodo
 
-## Folders
+## carpetas
 
-- `google_drive/` — study copy for a Google Drive DataPipe experiment.
-- `zenodo/` — study copy for a Zenodo DataPipe experiment.
+- `google_drive/` -> encuesta con end en drive
+- `zenodo/` -> lo mismo que arriba pero escribe en zenodo
 
-Both copies currently run locally and have the same survey. DataPipe is not
-configured yet. The next step is to create one DataPipe experiment per folder
-and add each experiment's own ID and extension.
+
 
 ## Run locally
 
-Open either folder's `index.html` in a browser with an internet connection.
-jsPsych and its plugins are loaded from the unpkg CDN. No participant data is
-sent anywhere in this version.
-
-This is a technical prototype, not a ready-to-recruit research protocol.
-Replace the marked study/contact details, confirm the consent and data
-management language for the eventual destination, and obtain any required
-ethics review before inviting real participants.
+Es un prototipo que estoy armando par aver que tan fácil es de usar (y como varia esta facilidad en distintos niveles de conocmiento). 
