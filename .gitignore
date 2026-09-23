@@ -1,0 +1,12 @@
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Local editor and operating-system files
+.vscode/
+.idea/
+
+# Data exports and test submissions
+*.csv
+*.json
+*.partial.json

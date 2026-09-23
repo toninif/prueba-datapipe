@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Prototipo de encuesta breve sobre emociones y satisfacción con la vida.">
+  <title>Encuesta breve · emociones y bienestar</title>
+  <link rel="stylesheet" href="https://unpkg.com/jspsych@8.3.0/css/jspsych.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/jspsych@8.3.0"></script>
+  <script src="https://unpkg.com/@jspsych/plugin-html-button-response@2.1.0"></script>
+  <script src="https://unpkg.com/@jspsych/plugin-survey-html-form@2.1.0"></script>
+  <script src="https://unpkg.com/@jspsych/plugin-survey-likert@2.2.0"></script>
+  <script defer src="study.js"></script>
+</head>
+<body>
+  <main id="consent-screen" class="consent-wrap">
+    <div class="study-mark" aria-hidden="true"><span></span><span></span><span></span></div>
+    <p class="kicker">Encuesta breve · 5–7 minutos</p>
+    <h1>Emociones y<br>bienestar cotidiano</h1>
+    <p class="intro">Una encuesta sobre cómo te sentís y cómo evaluás tu vida en general.</p>
+    <section class="consent-copy" aria-labelledby="consent-title">
+      <h2 id="consent-title">Antes de empezar</h2>
+      <p>Esta encuesta de demostración incluye preguntas demográficas generales y dos cuestionarios breves. No pedimos tu nombre ni tu correo electrónico. Podés dejar de participar en cualquier momento cerrando esta página.</p>
+      <p>En esta versión de prueba, las respuestas permanecen en esta sesión del navegador y no se envían a ningún repositorio. Antes de una aplicación real, se actualizará esta información para explicar el destino y manejo de los datos.</p>
+      <p>La encuesta está dirigida a personas de 18 años o más. Participar es voluntario. Algunas preguntas se refieren a emociones y satisfacción con la vida; podés omitirlas o cerrar la página.</p>
+      <p class="placeholder-note"><strong>Prototipo:</strong> antes de invitar participantes, completar responsable, contacto, finalidad, riesgos, conservación y procedimiento para retirar datos, y revisar el consentimiento según el protocolo aprobado.</p>
+    </section>
+    <div class="consent-actions">
+      <button id="accept-consent" class="primary-button" type="button">Tengo 18 años o más y acepto participar</button>
+      <button id="decline-consent" class="text-button" type="button">No acepto</button>
+    </div>
+    <p id="consent-message" class="consent-message" role="status" aria-live="polite"></p>
+    <footer>Prueba técnica con jsPsych · respuestas no enviadas</footer>
+  </main>
+  <main id="jspsych-root" hidden></main>
+</body>
+</html>
